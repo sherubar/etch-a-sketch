@@ -1,5 +1,7 @@
-*, *:before, *:after {
-    box-sizing: border-box;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 body {
@@ -10,19 +12,36 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: lightgray;
 }
 
 .EAS-title {
     margin-top: -50px;
+    font-family: 'Courier New', monospace;
+    font-style: italic;
+    padding-top: 30px;
 }
 
 .container {
     border: 1px solid black;
     height: 350px;
     width: 350px;
-    display: flex;  
+    display: flex;
+    flex-direction: column;
+    background-color: white;
 }
 
-.new-grid {
-    margin-top: 10px;
+.buttons {
+    padding-top: 20px;
+    display: flex;
+    gap: 80px;
+}
+
+.btn-style {
+    color: black;
+    background-color: lightskyblue;
+    box-shadow: none;
+    border: 1px solid black;
+    font-family: 'Courier New', monospace;
+    border-radius: 5px;
 }

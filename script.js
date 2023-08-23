@@ -20,22 +20,50 @@ function askUser(){
 function createGrid(numberOfSquares){
     numberOfSquares = squaresByUser
     for (let i = 0; i < numberOfSquares; i++){
+      const row = document.createElement("div");
+      row.style.cssText = `display: flex; flex-direction: row; flex:1; min-height = 0px;`
         for (let j = 0; j < numberOfSquares; j++){
             const newSquare = document.createElement('div')
-            newSquare.style.cssText = `border: 0.5px solid lightgray; flex-grow: 1; flex-shrink: 1; height: ${350/numberOfSquares}px;`
-            gridContainer.appendChild(newSquare)
+            newSquare.classList.add('gridSquare')
+            newSquare.style.cssText = `width: ${350/numberOfSquares}px; border: 0.5px solid lightgray; flex: 1;`
+            row.appendChild(newSquare)
         }
+        gridContainer.appendChild(row)
     }
+    hoverColor()
 }
+
+function generateRandomColor() {
+    let letters = '0123456789ABCDEF';
+    let color = '#';
+    for (var i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
+
+function hoverColor() {
+    let gridSquares = document.querySelectorAll('.gridSquare');
+    gridSquares.forEach(square => {
+      square.addEventListener('mouseover', () => {
+        let squareColour = square.style.backgroundColor = `${generateRandomColor()}`;
+        square.style.borderColor = `${squareColour}`
+      }, {once : true});
+    });
+  }
 
 function resetGrid(){
     gridContainer.innerHTML = ""
     newGridBtn.disabled = false
+    newGridBtn.style.backgroundColor = 'lightskyblue'
+        newGridBtn.style.color = 'black'
 }
 
 function disableNewGridBTn(){
     if (squaresByUser > 0){
         newGridBtn.disabled = true
+        newGridBtn.style.backgroundColor = 'lightgray'
+        newGridBtn.style.color = 'darkgray'
     }
     else {
         newGridBtn.disabled = false
